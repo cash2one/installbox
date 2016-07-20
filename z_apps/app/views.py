@@ -153,14 +153,14 @@ class NodeView(TemplateView):
 
         Fd = FileDetach()
         FileSome = Fd.ReadYaml_datasome(self.FileAdress)
-
-        for i in FileSome:
-            for j in range(len(FileSome.get(i))):
-                FileList.append({
-                    "PintList":FileSome.get(i)[j][0],
-                    "Node": FileSome.get(i)[j][1],
-                    "strategy": FileSome.get(i)[j][2],
-                })
+        if FileSome is not None:
+            for i in FileSome:
+                for j in range(len(FileSome.get(i))):
+                    FileList.append({
+                        "PintList":FileSome.get(i)[j][0],
+                        "Node": FileSome.get(i)[j][1],
+                        "strategy": FileSome.get(i)[j][2],
+                    })
 
         return FileList
 
