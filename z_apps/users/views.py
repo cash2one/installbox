@@ -34,7 +34,7 @@ class LoginView(RedirectView):
         co = Common()
         url = co.loginUrl(callback_url)
         return redirect(url['result'])
-        # return render(request,'z_app/ip_list.html')
+
 '''
 home登出页
 '''
