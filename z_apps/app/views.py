@@ -14,7 +14,7 @@ from django.views.generic import TemplateView, FormView
 
 from z_apps.base.views import JSONResponseMixin
 from z_apps.zapp_tools.views import Api
-
+import pymysql as MySQLdb
 
 
 class JsonRes(HttpResponse):

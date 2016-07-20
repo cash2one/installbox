@@ -13,7 +13,8 @@ from django.views.generic import TemplateView, ListView, RedirectView
 from clients.common import Common
 from clients.users import Users
 from django.shortcuts import redirect  
-from django.shortcuts import render
+import pymysql as MySQLdb
+
 
 '''
 home主页
