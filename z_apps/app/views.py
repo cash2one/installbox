@@ -182,7 +182,7 @@ class NodeAdd(FormView):
 
     def __init__(self):
         self.Fd=FileDetach()
-        self.FileName=os.getcwd()+os.getcwd()+"/static/FileSome/DataSome.yaml"
+        self.FileName=os.getcwd()+"/static/FileSome/DataSome.yaml"
         self.zhPattern = re.compile(u'[\u4e00-\u9fa5]+')
 
     def check_contain_chinese(self,check_str):
