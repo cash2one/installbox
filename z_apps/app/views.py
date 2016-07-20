@@ -100,8 +100,8 @@ class CollectionView(TemplateView):
     template_name="z_app/ip_list.html"
 
     def __init__(self):
-        self.FileAdress=os.getcwd()+"/korea.yaml"
-        self.File_gamename = os.getcwd()+"/game_category.txt"
+        self.FileAdress=os.getcwd()+"/static/FileSome/korea.yaml"
+        self.File_gamename = os.getcwd()+"/static/FileSome/game_category.txt"
         self.Fd=FileDetach()
 
     def TakeMsg(self):
@@ -143,7 +143,7 @@ class NodeView(TemplateView):
     template_name = "z_app/node.html"
 
     def __init__(self):
-        self.FileAdress = os.getcwd()+"/DataSome.yaml"
+        self.FileAdress = os.getcwd()+"/static/FileSome/DataSome.yaml"
 
 
     def TakeMsg(self):
@@ -182,7 +182,7 @@ class NodeAdd(FormView):
 
     def __init__(self):
         self.Fd=FileDetach()
-        self.FileName=os.getcwd()+"/DataSome.yaml"
+        self.FileName=os.getcwd()+os.getcwd()+"/static/FileSome/DataSome.yaml"
         self.zhPattern = re.compile(u'[\u4e00-\u9fa5]+')
 
     def check_contain_chinese(self,check_str):
@@ -232,7 +232,7 @@ class DeployView(TemplateView):
     template_name = "z_app/deploy.html"
 
     def __init__(self):
-        self.File_gamename = os.getcwd()+"/game_category.txt"
+        self.File_gamename = os.getcwd()+"/static/FileSome/game_category.txt"
         self.Fd = FileDetach()
         self.Fn_some = self.Fd.ReadFile(self.File_gamename)[:-1]
         self.GameCategary = ''
