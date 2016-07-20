@@ -1,0 +1,22 @@
+{% extends "base/base.html" %} {% block title %}{{ article.title }} | 欢迎页面 |
+{{ block.super }}{% endblock%} {% block content %}
+
+
+<div class="row">
+	<div class="col-md-10 col-md-offset-1">
+		<div class="panel panel-default">
+			<div class="panel-heading">系统介绍</div>
+			<div class="panel-body">
+				<p>本系统主要服务运维采集odps数据使用；</p>
+				<p>采集地址包含当前系统对应游戏下所有采集ip；</p>
+				<p>采集规则包含所有采集日志的对应规则；</p>
+				<p>每个平台对应一个采集规则;</p>
+				
+				<p>如有问题请联系<font style="color:green;">郑莹莹<u>zhengyingying@playcrab.com</u>。</font></p>
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+{% endblock %}
