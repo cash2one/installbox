@@ -22,8 +22,8 @@ urlpatterns = [
 
     url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^users/', include('a_urls.usersurl', namespace='users', app_name='users'), name='users'),
-    url(r'^base/', include('a_urls.baseurl', namespace='base', app_name='base'), name='base'),
-    url(r'^app/', include('a_urls.appurl', namespace='app', app_name='app'), name='app'),
+    url(r'^users/', include('urls.usersurl', namespace='users', app_name='users'), name='users'),
+    url(r'^base/', include('urls.baseurl', namespace='base', app_name='base'), name='base'),
+    url(r'^app/', include('urls.appurl', namespace='app', app_name='app'), name='app'),
     url(r'^$', views.LoginView.as_view(), name="index"),
 ]
