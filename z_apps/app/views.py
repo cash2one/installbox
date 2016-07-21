@@ -74,6 +74,7 @@ class FileDetach(object):
                 #     DataSome.get("strategy"),
                 # ])
                 self.FiDataSome.setdefault("%s" % (DataSome.get("PintList")), self.FDList)
+                Fn = open(FileName, 'a')
                 # self.FiDataSome.update(YamlMsg)
             else:
                 self.FDList.setdefault("%s" % DataSome.get("Node"), DataSome.get("strategy"))
@@ -84,9 +85,10 @@ class FileDetach(object):
                 dic = dict(Tf.items() + self.FDList.items())
                 print("dic=",dic,Tf,self.FDList)
                 self.FiDataSome["%s"%(DataSome.get("PintList"))]=dic
+                Fn = open(FileName, 'w')
                 # self.FiDataSome.update(YamlMsg)
 
-        Fn=open(FileName,'w')
+
         print("self.self.FiDataSome",self.FiDataSome)
         yaml.dump(self.FiDataSome, default_flow_style=False,stream=Fn, indent=4, encoding='utf-8', allow_unicode=True)
         Fn.close()
