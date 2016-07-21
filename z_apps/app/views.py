@@ -228,6 +228,7 @@ class NodeAdd(FormView):
             "strategy":strategy
         }
         # print ("DataSome",type(Node),type(PintList),type(strategy))
+        print("NodeAdd")
         self.Fd.RsWriteYaml(self.FileName,DataSome)
         return JsonRes(json.dumps(DataSome))
 
@@ -413,7 +414,7 @@ class FilllNodeAdd(FormView):
             "Node":Node,
             "strategy":strategy
         }
-        print("ssssss我是")
+        print("FilllNodeAdd")
         print ("DataSome",type(Node),type(PintList),type(strategy))
         self.Fd.RsWriteYaml(self.FileName,DataSome)
         return JsonRes(json.dumps(DataSome))
