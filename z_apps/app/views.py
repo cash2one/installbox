@@ -84,13 +84,12 @@ class FileDetach(object):
                 # self.FDList.append(DataSome.get("strategy"))
 
                 dic = dict(Tf.items() + self.FDList.items())
-                print("dic=",dic,Tf,self.FDList)
+
                 YamlMsg["%s"%(DataSome.get("PintList"))]=dic
 
                 # self.FiDataSome.update(YamlMsg)
 
         Fn = open(FileName, 'w')
-        print("self.self.FiDataSome",self.FiDataSome)
         yaml.dump(YamlMsg, default_flow_style=False,stream=Fn, indent=4, encoding='utf-8', allow_unicode=True)
         Fn.close()
         FileSome.close()
@@ -163,14 +162,14 @@ class NodeView(TemplateView):
         FileSome = Fd.ReadYaml_datasome(self.FileAdress)
 
         if FileSome is not None:
-            for i in FileSome:
-                for j in range(len(FileSome.get(i))):
+            for k,v in FileSome.items():
+                for l,j in v.items():
                     FileList.append({
-                        "PintList":FileSome.get(i)[j][0],
-                        "Node": FileSome.get(i)[j][1],
-                        "strategy": FileSome.get(i)[j][2],
+                        "PintList":k,
+                        "Node": l,
+                        "strategy": j,
                     })
-
+        print("ssssssss",FileSome,FileList)
         return FileList
 
 
