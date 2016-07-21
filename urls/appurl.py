@@ -25,7 +25,7 @@ from z_apps.app import views
 urlpatterns = [
                       
     url(r'collection/$', views.CollectionView.as_view(), name="collection"),
-    # url(r'NodeAdd/$', views.NodeAdd.as_view(), name="NodeAdd"),
+    url(r'NodepAdd/$', views.NodepAdd.as_view(), name="NodepAdd"),
     url(r'node/$', views.NodeView.as_view(), name="node"),
     url(r'deploy/$', views.DeployView.as_view(), name="deploy"),
     url(r'filelistjson/$', views.FileListJsonView.as_view(), name="filelistjson"),

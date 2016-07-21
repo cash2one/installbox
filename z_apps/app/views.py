@@ -185,7 +185,7 @@ class NodeView(TemplateView):
 
 
 
-class NodeAdd(FormView):
+class NodepAdd(FormView):
     '''接受参数写入yaml文件'''
 
     def __init__(self):
