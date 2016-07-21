@@ -152,6 +152,7 @@ class NodeView(TemplateView):
 
 
         Fd = FileDetach()
+        FileSome=[]
         FileSome = Fd.ReadYaml_datasome(self.FileAdress)
         print("filesome",FileSome)
         if FileSome is not "":
