@@ -154,9 +154,8 @@ class NodeView(TemplateView):
         Fd = FileDetach()
 
         FileSome = Fd.ReadYaml_datasome(self.FileAdress)
-        print("filesome",FileSome)
-        FileSome=[]
-        if FileSome is not "":
+
+        if FileSome is not None:
             for i in FileSome:
                 for j in range(len(FileSome.get(i))):
                     FileList.append({
