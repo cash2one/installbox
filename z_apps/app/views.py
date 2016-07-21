@@ -289,7 +289,7 @@ class FailNodeView(TemplateView):
     template_name = "z_app/fillnode.html"
 
     def __init__(self):
-        self.FileAdress = os.getcwd()+"/static/FileSome/DataSome.yaml"
+        self.FileAdress = os.getcwd()+"/static/FileSome/fileDatasome.yaml"
 
 
     def TakeMsg(self):
