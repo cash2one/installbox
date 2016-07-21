@@ -11,7 +11,7 @@ sys.setdefaultencoding('utf8')
 import os
 from django.http import HttpResponse
 from django.views.generic import TemplateView, FormView
-
+import subprocess
 from z_apps.base.views import JSONResponseMixin
 from z_apps.zapp_tools.views import Api
 
@@ -426,18 +426,13 @@ class FileTakeShell(TemplateView):
     '''提交运行shell脚本'''
 
     def post(self, request):
-        PintList = request.POST.get("PintList")
-        Node = request.POST.get("Node")
-        strategy = request.POST.get("strategy")
-
-        DataSome = {
-            "PintList": PintList,
-            "Node": Node,
-            "strategy": strategy
-        }
-
-        print DataSome
-        return JsonRes(json.dumps(DataSome))
+        TimeSome = request.POST.get("TimeSome")
+        print("Time",TimeSome)
+        url=os.getcwd() + "/static/FileSome/testshell.yaml"
+        subprocess.Popen([
+            "sh","%s"%url,"%s"%TimeSome
+        ])
+        return JsonRes(json.dumps(TimeSome))
 
 
 
