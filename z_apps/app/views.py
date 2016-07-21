@@ -76,7 +76,7 @@ class FileDetach(object):
                 self.FiDataSome.setdefault("%s" % (DataSome.get("PintList")), self.FDList)
                 # self.FiDataSome.update(YamlMsg)
             else:
-                self.FiDataSome.setdefault("%s" % (DataSome.get("PintList")), self.FDList)
+                self.FDList.setdefault("%s" % DataSome.get("Node"), DataSome.get("strategy"))
                 # self.FDList.append(DataSome.get("PintList"))
                 # self.FDList.append(DataSome.get("Node"))
                 # self.FDList.append(DataSome.get("strategy"))
