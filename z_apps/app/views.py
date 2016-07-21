@@ -152,9 +152,10 @@ class NodeView(TemplateView):
 
 
         Fd = FileDetach()
-        FileSome=[]
+
         FileSome = Fd.ReadYaml_datasome(self.FileAdress)
         print("filesome",FileSome)
+        FileSome=[]
         if FileSome is not "":
             for i in FileSome:
                 for j in range(len(FileSome.get(i))):
