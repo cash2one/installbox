@@ -91,7 +91,7 @@ class FileDetach(object):
 
         Fn = open(FileName, 'w')
         print("self.self.FiDataSome",self.FiDataSome)
-        yaml.dump(self.FiDataSome, default_flow_style=False,stream=Fn, indent=4, encoding='utf-8', allow_unicode=True)
+        yaml.dump(YamlMsg, default_flow_style=False,stream=Fn, indent=4, encoding='utf-8', allow_unicode=True)
         Fn.close()
         FileSome.close()
 
