@@ -1,1 +1,1 @@
-alert("sssssssssss")
+echo("sssssssssss")
