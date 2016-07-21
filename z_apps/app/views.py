@@ -36,7 +36,7 @@ class FileDetach(object):
         self.ip_public=[]
         self.Node=[]
         self.FiDataSome={}
-        self.FDList=[]
+        self.FDList={}
 
     def ReadYaml(self,FileName):
         '''读取yaml文件'''
@@ -57,30 +57,33 @@ class FileDetach(object):
         YamlMsg = yaml.load(FileSome)
 
         if YamlMsg is None:
-            self.FDList.append([
-                    DataSome.get("PintList"),
-                    DataSome.get("Node"),
-                    DataSome.get("strategy"),
-            ])
+            self.FDList.setdefault("%s"%DataSome.get("Node"),DataSome.get("strategy"))
+            # self.FDList.append([
+            #         DataSome.get("PintList"),
+            #         DataSome.get("Node"),
+            #         DataSome.get("strategy"),
+            # ])
             self.FiDataSome.setdefault("%s"%(DataSome.get("PintList")),self.FDList)
         else:
             Tf=YamlMsg.get(DataSome.get("PintList"),None)
             if Tf is None:
-                self.FDList.append([
-                    DataSome.get("PintList"),
-                    DataSome.get("Node"),
-                    DataSome.get("strategy"),
-                ])
+                self.FDList.setdefault("%s" % DataSome.get("Node"), DataSome.get("strategy"))
+                # self.FDList.append([
+                #     DataSome.get("PintList"),
+                #     DataSome.get("Node"),
+                #     DataSome.get("strategy"),
+                # ])
                 self.FiDataSome.setdefault("%s" % (DataSome.get("PintList")), self.FDList)
                 self.FiDataSome.update(YamlMsg)
             else:
-                self.FDList.append(DataSome.get("PintList"))
-                self.FDList.append(DataSome.get("Node"))
-                self.FDList.append(DataSome.get("strategy"))
+                self.FiDataSome.setdefault("%s" % (DataSome.get("PintList")), self.FDList)
+                # self.FDList.append(DataSome.get("PintList"))
+                # self.FDList.append(DataSome.get("Node"))
+                # self.FDList.append(DataSome.get("strategy"))
 
-                Tf.append(self.FDList)
-                self.FiDataSome["%s"%(DataSome.get("PintList"))]=Tf
-                self.FiDataSome.update(YamlMsg)
+                dic = dict(Tf.items() + self.FiDataSome.items())
+                self.FiDataSome["%s"%(DataSome.get("PintList"))]=dic
+                # self.FiDataSome.update(YamlMsg)
 
         Fn=open(FileName,'w')
         print("self.self.FiDataSome",self.FiDataSome)
