@@ -169,7 +169,6 @@ class NodeView(TemplateView):
                         "Node": l,
                         "strategy": j,
                     })
-        print("ssssssss",FileSome,FileList)
         return FileList
 
 
@@ -303,12 +302,12 @@ class FailNodeView(TemplateView):
         FileSome = Fd.ReadYaml_datasome(self.FileAdress)
 
         if FileSome is not None:
-            for i in FileSome:
-                for j in range(len(FileSome.get(i))):
+            for k,v in FileSome.items():
+                for l,j in v.items():
                     FileList.append({
-                        "PintList":FileSome.get(i)[j][0],
-                        "Node": FileSome.get(i)[j][1],
-                        "strategy": FileSome.get(i)[j][2],
+                        "PintList":k,
+                        "Node": l,
+                        "strategy": j,
                     })
 
         return FileList
