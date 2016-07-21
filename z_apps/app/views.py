@@ -371,7 +371,7 @@ class FileDeployView(TemplateView):
 
 
 
-class FilllNodeAdd(FormView):
+class FillNodeAdd(TemplateView):
     '''失败节点添加'''
 
     def __init__(self):

@@ -33,7 +33,7 @@ urlpatterns = [
 
     url(r'FailNodeView/$', views.FailNodeView.as_view(), name="FailNodeView"),
     url(r'FileDeployView/$', views.FileDeployView.as_view(), name="FileDeployView"),
-    url(r'FilllNodeAdd/$', views.FilllNodeAdd.as_view(), name="FilllNodeAdd"),
+    url(r'FillNodeAdd/$', views.FillNodeAdd.as_view(), name="FillNodeAdd"),
 
     url(r'FileTimeGoView/$', views.FileTimeGoView.as_view(), name="FileTimeGoView"),
     url(r'FileTakeShell/$', views.FileTakeShell.as_view(), name="FileTakeShell")
