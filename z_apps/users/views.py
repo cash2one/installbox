@@ -47,7 +47,7 @@ class LogoutView(RedirectView):
             del request.session["username"]
 
         host = request.get_host()
-        callback_url = "http://%s/userslogin/" % host
+        callback_url = "http://%s/users/login/" % host
         co = Common()
         url = co.logoutUrl(callback_url)
         return redirect(url['result'])

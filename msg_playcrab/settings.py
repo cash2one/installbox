@@ -86,16 +86,16 @@ WSGI_APPLICATION = 'msg_playcrab.wsgi.application'
 #     }
 # }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'Shake',
-#         'HOST': '123.57.226.182',
-#         'USER': 'root',
-#         'PASSWORD': 'Jksd3344',
-#         'PORT': '3306',
-#     },
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'Shake',
+        'HOST': '123.57.226.182',
+        'USER': 'root',
+        'PASSWORD': 'Jksd3344',
+        'PORT': '3306',
+    },
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
