@@ -279,39 +279,39 @@ class DeployView(TemplateView):
 
 
 
-class FailNodeView(TemplateView):
-    '''失败节点管理'''
-    template_name = "z_app/fillnode.html"
-
-    def __init__(self):
-        self.FileAdress = os.getcwd()+"/static/FileSome/DataSome.yaml"
-
-
-    def TakeMsg(self):
-        '''遍历文件内容'''
-        FileList=[]
-
-
-        Fd = FileDetach()
-
-        FileSome = Fd.ReadYaml_datasome(self.FileAdress)
-
-        if FileSome is not None:
-            for i in FileSome:
-                for j in range(len(FileSome.get(i))):
-                    FileList.append({
-                        "PintList":FileSome.get(i)[j][0],
-                        "Node": FileSome.get(i)[j][1],
-                        "strategy": FileSome.get(i)[j][2],
-                    })
-
-        return FileList
-
-
-    def get_context_data(self, **kwargs):
-        context = super(FailNodeView, self).get_context_data(**kwargs)
-        context['Node'] = self.TakeMsg()
-        return context
+# class FailNodeView(TemplateView):
+#     '''失败节点管理'''
+#     template_name = "z_app/fillnode.html"
+#
+#     def __init__(self):
+#         self.FileAdress = os.getcwd()+"/static/FileSome/DataSome.yaml"
+#
+#
+#     def TakeMsg(self):
+#         '''遍历文件内容'''
+#         FileList=[]
+#
+#
+#         Fd = FileDetach()
+#
+#         FileSome = Fd.ReadYaml_datasome(self.FileAdress)
+#
+#         if FileSome is not None:
+#             for i in FileSome:
+#                 for j in range(len(FileSome.get(i))):
+#                     FileList.append({
+#                         "PintList":FileSome.get(i)[j][0],
+#                         "Node": FileSome.get(i)[j][1],
+#                         "strategy": FileSome.get(i)[j][2],
+#                     })
+#
+#         return FileList
+#
+#
+#     def get_context_data(self, **kwargs):
+#         context = super(FailNodeView, self).get_context_data(**kwargs)
+#         context['Node'] = self.TakeMsg()
+#         return context
 
 
 
