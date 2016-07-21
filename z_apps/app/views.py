@@ -57,6 +57,7 @@ class FileDetach(object):
         YamlMsg = yaml.load(FileSome)
 
         if YamlMsg is None:
+            YamlMsg={}
             self.FDList.setdefault("%s"%DataSome.get("Node"),DataSome.get("strategy"))
             # self.FDList.append([
             #         DataSome.get("PintList"),
