@@ -63,7 +63,7 @@ class FileDetach(object):
             #         DataSome.get("Node"),
             #         DataSome.get("strategy"),
             # ])
-            self.FiDataSome.setdefault("%s"%(DataSome.get("PintList")),self.FDList)
+            YamlMsg.setdefault("%s"%(DataSome.get("PintList")),self.FDList)
         else:
             Tf=YamlMsg.get(DataSome.get("PintList"),None)
             if Tf is None:
@@ -73,22 +73,23 @@ class FileDetach(object):
                 #     DataSome.get("Node"),
                 #     DataSome.get("strategy"),
                 # ])
-                self.FiDataSome.setdefault("%s" % (DataSome.get("PintList")), self.FDList)
-                Fn = open(FileName, 'a')
+
+                YamlMsg.setdefault("%s" % (DataSome.get("PintList")), self.FDList)
+
                 # self.FiDataSome.update(YamlMsg)
             else:
                 self.FDList.setdefault("%s" % DataSome.get("Node"), DataSome.get("strategy"))
                 # self.FDList.append(DataSome.get("PintList"))
                 # self.FDList.append(DataSome.get("Node"))
                 # self.FDList.append(DataSome.get("strategy"))
-                print("Yamlmsg",YamlMsg)
+
                 dic = dict(Tf.items() + self.FDList.items())
                 print("dic=",dic,Tf,self.FDList)
-                self.FiDataSome["%s"%(DataSome.get("PintList"))]=dic
-                Fn = open(FileName, 'w')
+                YamlMsg["%s"%(DataSome.get("PintList"))]=dic
+
                 # self.FiDataSome.update(YamlMsg)
 
-
+        Fn = open(FileName, 'w')
         print("self.self.FiDataSome",self.FiDataSome)
         yaml.dump(self.FiDataSome, default_flow_style=False,stream=Fn, indent=4, encoding='utf-8', allow_unicode=True)
         Fn.close()
