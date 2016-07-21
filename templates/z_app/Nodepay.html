@@ -49,12 +49,12 @@ $(document).ready(function(){
 function TakeSome()
 	{
 
-        var Node = $("#TimeSome").val();
+        var TimeSome = $("#TimeSome").val();
 
 		$.ajax({
-			url:'/app/FilllNodeAdd/',
+			url:'/app/FileTakeShell/',
 			type:"post",
-			data:{'PintList':PintList,"Node":Node,"strategy":strategy},
+			data:{'TimeSome':TimeSome},
 			success:function(msg){
 				alert("success");
                 alert(msg)
