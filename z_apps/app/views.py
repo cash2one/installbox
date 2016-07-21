@@ -74,7 +74,7 @@ class FileDetach(object):
                 #     DataSome.get("strategy"),
                 # ])
                 self.FiDataSome.setdefault("%s" % (DataSome.get("PintList")), self.FDList)
-                self.FiDataSome.update(YamlMsg)
+                # self.FiDataSome.update(YamlMsg)
             else:
                 self.FiDataSome.setdefault("%s" % (DataSome.get("PintList")), self.FDList)
                 # self.FDList.append(DataSome.get("PintList"))
@@ -82,6 +82,7 @@ class FileDetach(object):
                 # self.FDList.append(DataSome.get("strategy"))
 
                 dic = dict(Tf.items() + self.FiDataSome.items())
+                print("dic=",dic)
                 self.FiDataSome["%s"%(DataSome.get("PintList"))]=dic
                 # self.FiDataSome.update(YamlMsg)
 
