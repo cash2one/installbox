@@ -280,7 +280,7 @@ class DeployView(TemplateView):
 
 
 class FailNodeView(TemplateView):
-    '''失败节点管理'''
+    '''失败节点管理页面'''
     template_name = "z_app/fillnode.html"
 
     def __init__(self):
@@ -320,7 +320,7 @@ class FailNodeView(TemplateView):
 
 
 class FileDeployView(TemplateView):
-    '''失败配置文件修改'''
+    '''失败配置文件修改页面'''
     template_name = "z_app/filldeploy.html"
 
     def __init__(self):
@@ -418,48 +418,26 @@ class FilllNodeAdd(FormView):
 
 
 class FileTimeGoView(TemplateView):
-    '''失败节点补充提交'''
+    '''失败节点补充提交页面'''
     template_name = "z_app/Nodepay.html"
 
-    def __init__(self):
-        self.File_gamename = os.getcwd()+"/static/FileSome/game_category.txt"
-        self.Fd = FileDetach()
-        self.Fn_some = self.Fd.ReadFile(self.File_gamename)[:-1]
-        self.GameCategary = ''
-        self.PlatForms = ''
-        self.Api_show=Api()
-        self.PlatName_list=[]
 
+class FileTakeShell(TemplateView):
+    '''提交运行shell脚本'''
 
-    def GameId_fun(self):
-        '''获取游戏id'''
-        self.GameCategary = '{"jsonrpc":"2.0","method":"getCategories","params":{"prefix":"%s"}}' % self.Fn_some
-        Pita = self.Api_show.get_data(json_str=self.GameCategary)
-        Game_id=Pita.get('result')[0].get('id')
-        return Game_id
+    def post(self, request):
+        PintList = request.POST.get("PintList")
+        Node = request.POST.get("Node")
+        strategy = request.POST.get("strategy")
 
+        DataSome = {
+            "PintList": PintList,
+            "Node": Node,
+            "strategy": strategy
+        }
 
-    def PlatForm_fun(self):
-        '''通过id获取游戏平台数据集合'''
-
-        Game_id=self.GameId_fun()
-        self.PlatForms='{"jsonrpc":"2.0","method":"getPlatforms","params":{"main_category_id":"%s"}}' % Game_id
-        PlatSome=(self.Api_show.get_data(json_str=self.PlatForms)).get('result')
-        for i in range(len(PlatSome)):
-            self.PlatName_list.append({
-                "name":PlatSome[i].get('name')
-            })
-
-        return self.PlatName_list
-
-
-    def get_context_data(self, **kwargs):
-        context = super(FileTimeGoView, self).get_context_data(**kwargs)
-        context['PlatName_list'] = self.PlatForm_fun()
-        return context
-
-
-
+        print DataSome
+        return JsonRes(json.dumps(DataSome))
 
 
 
@@ -474,9 +452,3 @@ class FileListJsonView(JSONResponseMixin,TemplateView):
         
         result = ['1.yaml','2.yaml']
         return self.render_to_response({'flag':1,'message':result})
-
-
-class TestView(TemplateView):
-
-
-    template_name = "z_app/test.html"

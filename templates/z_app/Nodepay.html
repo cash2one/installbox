@@ -22,7 +22,7 @@
 
                 <form class="form-horizontal">
                     <div class="form-group">
-                      <label for="firstname" class="col-sm-2 control-label">时间提交</label>
+                      <label class="col-sm-2 control-label">时间提交</label>
                       <div class="col-sm-10">
                          <input type="text" class="form-control" id="Node" name="Node" placeholder="YYYY-MM-DD">
                       </div>
@@ -31,10 +31,6 @@
                     <button type="button" class="btn btn-primary" onclick="TakeSome()">添加</button>
 
                 </form>
-
-
-
-
 
 
          </div>
@@ -52,9 +48,8 @@ $(document).ready(function(){
 
 function TakeSome()
 	{
-		var PintList = $("#PintList").val();
+
         var Node = $("#Node").val();
-        var strategy = $("#strategy").val();
 		alert(strategy);
 		$.ajax({
 			url:'/app/FilllNodeAdd/',
