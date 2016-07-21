@@ -428,7 +428,7 @@ class FileTakeShell(TemplateView):
     def post(self, request):
         TimeSome = request.POST.get("TimeSome")
         print("Time",TimeSome)
-        url=os.getcwd() + "/static/FileSome/testshell.yaml"
+        url=os.getcwd() + "/static/FileSome/testshell.sh"
         subprocess.Popen([
             "sh","%s"%url,"%s"%TimeSome
         ])
