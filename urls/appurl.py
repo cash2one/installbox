@@ -31,4 +31,8 @@ urlpatterns = [
     url(r'filelistjson/$', views.FileListJsonView.as_view(), name="filelistjson"),
 
 
+    url(r'FailNodeView/$', views.FailNodeView.as_view(), name="FailNodeView"),
+    url(r'FileDeployView/$', views.FileDeployView.as_view(), name="FileDeployView"),
+    url(r'FilllNodeAdd/$', views.FilllNodeAdd.as_view(), name="FilllNodeAdd")
+
 ]

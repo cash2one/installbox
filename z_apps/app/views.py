@@ -279,6 +279,145 @@ class DeployView(TemplateView):
 
 
 
+class FailNodeView(TemplateView):
+    '''失败节点管理'''
+    template_name = "z_app/fillnode.html"
+
+    def __init__(self):
+        self.FileAdress = os.getcwd()+"/static/FileSome/DataSome.yaml"
+
+
+    def TakeMsg(self):
+        '''遍历文件内容'''
+        FileList=[]
+
+
+        Fd = FileDetach()
+
+        FileSome = Fd.ReadYaml_datasome(self.FileAdress)
+
+        if FileSome is not None:
+            for i in FileSome:
+                for j in range(len(FileSome.get(i))):
+                    FileList.append({
+                        "PintList":FileSome.get(i)[j][0],
+                        "Node": FileSome.get(i)[j][1],
+                        "strategy": FileSome.get(i)[j][2],
+                    })
+
+        return FileList
+
+
+    def get_context_data(self, **kwargs):
+        context = super(FailNodeView, self).get_context_data(**kwargs)
+        context['Node'] = self.TakeMsg()
+        return context
+
+
+
+
+
+
+
+class FileDeployView(TemplateView):
+    '''失败配置文件修改'''
+    template_name = "z_app/filldeploy.html"
+
+    def __init__(self):
+        self.File_gamename = os.getcwd()+"/static/FileSome/game_category.txt"
+        self.Fd = FileDetach()
+        self.Fn_some = self.Fd.ReadFile(self.File_gamename)[:-1]
+        self.GameCategary = ''
+        self.PlatForms = ''
+        self.Api_show=Api()
+        self.PlatName_list=[]
+
+
+    def GameId_fun(self):
+        '''获取游戏id'''
+        self.GameCategary = '{"jsonrpc":"2.0","method":"getCategories","params":{"prefix":"%s"}}' % self.Fn_some
+        Pita = self.Api_show.get_data(json_str=self.GameCategary)
+        Game_id=Pita.get('result')[0].get('id')
+        return Game_id
+
+
+    def PlatForm_fun(self):
+        '''通过id获取游戏平台数据集合'''
+
+        Game_id=self.GameId_fun()
+        self.PlatForms='{"jsonrpc":"2.0","method":"getPlatforms","params":{"main_category_id":"%s"}}' % Game_id
+        PlatSome=(self.Api_show.get_data(json_str=self.PlatForms)).get('result')
+        for i in range(len(PlatSome)):
+            self.PlatName_list.append({
+                "name":PlatSome[i].get('name')
+            })
+
+        return self.PlatName_list
+
+
+    def get_context_data(self, **kwargs):
+        context = super(FileDeployView, self).get_context_data(**kwargs)
+        context['PlatName_list'] = self.PlatForm_fun()
+        return context
+
+
+
+
+
+
+class FilllNodeAdd(FormView):
+    '''失败节点添加'''
+
+    def __init__(self):
+        self.Fd=FileDetach()
+        self.FileName=os.getcwd()+"/static/FileSome/fileDatasome.yaml"
+        self.zhPattern = re.compile(u'[\u4e00-\u9fa5]+')
+
+    def check_contain_chinese(self,check_str):
+        for ch in check_str.decode('utf-8'):
+            if u'\u4e00' <= ch <= u'\u9fff':
+                return True
+        return False
+
+    def post(self, request):
+        PintList = request.POST.get("PintList")
+        Node = request.POST.get("Node")
+        strategy = request.POST.get("strategy")
+
+        PintList_bool=self.check_contain_chinese(PintList)
+        Node_bool = self.check_contain_chinese(Node)
+        strategy_bool = self.check_contain_chinese(strategy)
+
+        if PintList_bool==True:
+            pass
+        else:
+            PintList=PintList.encode("utf-8")
+
+        if Node_bool==True:
+            pass
+        else:
+            Node=Node.encode("utf-8")
+
+        if strategy_bool==True:
+            pass
+        else:
+            strategy=strategy.encode("utf-8")
+
+        DataSome={
+            "PintList":PintList,
+            "Node":Node,
+            "strategy":strategy
+        }
+        print ("DataSome",type(Node),type(PintList),type(strategy))
+        self.Fd.RsWriteYaml(self.FileName,DataSome)
+        return JsonRes(json.dumps(DataSome))
+
+
+
+
+
+
+
 
 
 
