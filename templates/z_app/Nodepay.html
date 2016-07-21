@@ -4,7 +4,6 @@
 {% endblock%}
 
 {% block content %}
-
 <style type="text/css">
 .form-control{
     width:300px;
@@ -25,17 +24,7 @@
                     <div class="form-group">
                       <label for="firstname" class="col-sm-2 control-label">时间提交</label>
                       <div class="col-sm-10">
-                          	<link href="/static/assets/css/bootstrap.css" rel='stylesheet' type='text/css' />
-                            <link href="/static/assets/css/bootstrap.min.css"  rel="stylesheet" media="screen">
-                            <link href="/static/assets/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
-                            <script type="text/javascript" src="/static/assets/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-                            <script type="text/javascript" src="/static/assets/js/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
-                         	<div class="input-group date form_datetime col-md-5">
-                            <input class="form-control" size="16" type="text" value="end-time" readonly id="Etime">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
-                            </div>
-                            <br/>
+                         <input type="text" class="form-control" id="Node" name="Node" placeholder="YYYY-MM-DD">
                       </div>
                    </div>
 
@@ -55,23 +44,6 @@
 </div>
 
 <script>
-
-    $('.form_datetime').datetimepicker({
-		language: 'zh-CN',
-		maxView :3,
-		format: "yyyy-mm-dd",// format: "yyyy-mm-dd",
-		minView: "month",
-		weekStart: 1,
-		todayBtn:  1,
-		autoclose: 1,
-		todayHighlight: 1,
-		startView: 3,
-		forceParse: 0,
-		showMeridian: 1,
-		defaultDate : new Date()
-	});
-
-	$('.form_datetime').datetimepicker('update', new Date());
 $(document).ready(function(){
    //initialize the javascript
    App.formElements();
