@@ -81,8 +81,8 @@ class FileDetach(object):
                 # self.FDList.append(DataSome.get("Node"))
                 # self.FDList.append(DataSome.get("strategy"))
 
-                dic = dict(Tf.items() + self.FiDataSome.items())
-                print("dic=",dic)
+                dic = dict(Tf.items() + self.FDList.items())
+                print("dic=",dic,Tf,self.FDList)
                 self.FiDataSome["%s"%(DataSome.get("PintList"))]=dic
                 # self.FiDataSome.update(YamlMsg)
 
