@@ -18,6 +18,7 @@ from z_apps.zapp_tools.views import Api
 from clients.config import Url_some
 Url=Url_some()
 
+
 class JsonRes(HttpResponse):
     def __init__(self,
             content={},
@@ -28,8 +29,6 @@ class JsonRes(HttpResponse):
             json.dumps(content),
             status=status,
             content_type=content_type)
-
-
 
 class FileDetach(object):
     '''文件操作'''

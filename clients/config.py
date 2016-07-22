@@ -2,7 +2,7 @@
 #coding=utf8
 
 '''配置文件'''
-
+import os
 settings = {
     'api_url' : 'http://api.ucenter.playcrab.com/',
     'api_key' : '3158308647',
