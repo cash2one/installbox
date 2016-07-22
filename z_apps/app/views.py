@@ -282,7 +282,7 @@ class DeployView(TemplateView):
         PlatSome=(self.Api_show.get_data(json_str=self.PlatForms)).get('result')
         for i in range(len(PlatSome)):
             self.PlatName_list.append({
-                "name":PlatSome[i].get('name')
+                "name":PlatSome[i].get('prefix')
             })
 
         return self.PlatName_list
@@ -373,7 +373,7 @@ class FileDeployView(TemplateView):
         print("Platsome",PlatSome)
         for i in range(len(PlatSome)):
             self.PlatName_list.append({
-                "name":PlatSome[i].get('name')
+                "name":PlatSome[i].get('prefix')
             })
 
         return self.PlatName_list
