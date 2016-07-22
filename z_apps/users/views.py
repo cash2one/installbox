@@ -76,7 +76,7 @@ class CheckView(RedirectView):
             if user_role['result']:
                 response = HttpResponse()
                 response.set_cookie(settings.SESSION_COOKIE_NAME,user['result']['name'] )
-                request.session["username"] = user['result']['name']
+                # request.session["username"] = user['result']['name']
         self.pattern_name = "users:home"
 
         return redirect(reverse(self.pattern_name, args=[]))
