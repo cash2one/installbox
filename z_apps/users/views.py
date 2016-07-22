@@ -34,7 +34,7 @@ class LoginView(RedirectView):
         co = Common()
         url = co.loginUrl(callback_url)
         print("url",url)
-        return redirect(url.get("result,"""))
+        return redirect(url.get("result",""))
 
 '''
 home登出页
