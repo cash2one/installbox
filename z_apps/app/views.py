@@ -433,7 +433,7 @@ class FillNodeAdd(TemplateView):
             "Node":Node,
             "strategy":strategy
         }
-        print("FilllNodeAdd")
+
         print ("DataSome",type(Node),type(PintList),type(strategy))
         self.Fd.RsWriteYaml(self.FileName,DataSome)
         return JsonRes(json.dumps(DataSome))
