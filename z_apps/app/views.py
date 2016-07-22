@@ -184,7 +184,7 @@ class NodeView(TemplateView):
 
 
 
-class DelteNode(TemplateView):
+class DeltepNode(TemplateView):
     '''节点删除'''
     def __init__(self):
         self.Fd = FileDetach()
