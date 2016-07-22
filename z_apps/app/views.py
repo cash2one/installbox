@@ -29,6 +29,16 @@ class JsonRes(HttpResponse):
             status=status,
             content_type=content_type)
 
+class Url_some(object):
+    def __init__(self):
+        self.root=os.getcwd()
+        self.DataSome=self.root+"/static/FileSome/DataSome.yaml"
+        self.fileDatasome=self.root+"/static/FileSome/fileDatasome.yaml"
+        self.game_category=self.root+"/static/FileSome/game_category.txt"
+        self.korea=self.root+"/static/FileSome/korea.yaml"
+        self.platform_category=self.root+"/static/FileSome/platform_category.txt"
+        self.testshell=self.root+"/static/FileSome/testshell.sh"
+Url=Url_some()
 
 class FileDetach(object):
     '''文件操作'''
@@ -111,8 +121,8 @@ class CollectionView(TemplateView):
     template_name="z_app/ip_list.html"
 
     def __init__(self):
-        self.FileAdress=os.getcwd()+"/static/FileSome/korea.yaml"
-        self.File_gamename = os.getcwd()+"/static/FileSome/game_category.txt"
+        self.FileAdress=Url.korea
+        self.File_gamename = Url.game_category
         self.Fd=FileDetach()
 
     def TakeMsg(self):
@@ -154,7 +164,7 @@ class NodeView(TemplateView):
     template_name = "z_app/node.html"
 
     def __init__(self):
-        self.FileAdress = os.getcwd()+"/static/FileSome/DataSome.yaml"
+        self.FileAdress = Url.DataSome
 
 
     def TakeMsg(self):
@@ -188,7 +198,7 @@ class DeltepNode(TemplateView):
     '''节点删除'''
     def __init__(self):
         self.Fd = FileDetach()
-        self.FileName = os.getcwd() + "/static/FileSome/DataSome.yaml"
+        self.FileName = Url.DataSome
 
     def post(self,request):
         NodeName=request.POST.get("NodeName")
@@ -207,7 +217,7 @@ class NodepAdd(FormView):
 
     def __init__(self):
         self.Fd=FileDetach()
-        self.FileName=os.getcwd()+"/static/FileSome/DataSome.yaml"
+        self.FileName=Url.DataSome
         self.zhPattern = re.compile(u'[\u4e00-\u9fa5]+')
 
     def check_contain_chinese(self,check_str):
@@ -258,7 +268,7 @@ class DeployView(TemplateView):
     template_name = "z_app/deploy.html"
 
     def __init__(self):
-        self.File_gamename = os.getcwd()+"/static/FileSome/game_category.txt"
+        self.File_gamename = Url.game_category
         self.Fd = FileDetach()
         self.Fn_some = self.Fd.ReadFile(self.File_gamename)[:-1]
         self.GameCategary = ''
@@ -308,7 +318,7 @@ class FailNodeView(TemplateView):
     template_name = "z_app/fillnode.html"
 
     def __init__(self):
-        self.FileAdress = os.getcwd()+"/static/FileSome/fileDatasome.yaml"
+        self.FileAdress = Url.fileDatasome
 
 
     def TakeMsg(self):
@@ -348,7 +358,7 @@ class FileDeployView(TemplateView):
     template_name = "z_app/filldeploy.html"
 
     def __init__(self):
-        self.File_gamename = os.getcwd()+"/static/FileSome/game_category.txt"
+        self.File_gamename = Url.game_category
         self.Fd = FileDetach()
         self.Fn_some = self.Fd.ReadFile(self.File_gamename)[:-1]
         self.GameCategary = ''
@@ -395,7 +405,7 @@ class FillNodeAdd(TemplateView):
 
     def __init__(self):
         self.Fd=FileDetach()
-        self.FileName=os.getcwd()+"/static/FileSome/fileDatasome.yaml"
+        self.FileName=Url.fileDatasome
         self.zhPattern = re.compile(u'[\u4e00-\u9fa5]+')
 
     def check_contain_chinese(self,check_str):
@@ -444,7 +454,7 @@ class FillDelteNode(TemplateView):
     '''失败节点删除'''
     def __init__(self):
         self.Fd = FileDetach()
-        self.FileName = os.getcwd() + "/static/FileSome/fileDatasome.yaml"
+        self.FileName = Url.fileDatasome
 
     def post(self,request):
         NodeName=request.POST.get("NodeName")
@@ -475,7 +485,7 @@ class FileTakeShell(TemplateView):
         ShowStr=re.findall(rule,TimeSome)
         if not ShowStr:
             return JsonRes(json.dumps("0401"))
-        url=os.getcwd() + "/static/FileSome/testshell.sh"
+        url=Url.testshell
         subprocess.Popen([
             "sh","%s"%url,"%s"%ShowStr[0]
         ])
