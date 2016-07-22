@@ -76,9 +76,9 @@ class CheckView(RedirectView):
         #         response = HttpResponse()
         #         response.set_cookie(settings.SESSION_COOKIE_NAME,user['result']['name'] )
         #         request.session["username"] = user['result']['name']
-        #         self.pattern_name = "users:home"
+        self.pattern_name = "users:home"
 
-        return redirect("/app/node/")
+        return redirect(reverse(self.pattern_name, args=[]))
 #         return super(CheckView, self).get(request)
     
 #     #post方式接收验证
