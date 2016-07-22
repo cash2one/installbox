@@ -5,6 +5,7 @@
 import re
 import json
 import yaml
+import re
 import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -435,10 +436,14 @@ class FileTakeShell(TemplateView):
 
     def post(self, request):
         TimeSome = request.POST.get("TimeSome")
-        print("Time",TimeSome)
+
+        rule=r'(\d{4}-\d{2}-\d{2})'
+        ShowStr=re.findall(rule,TimeSome)
+        if not ShowStr:
+            return JsonRes(json.dumps("0401"))
         url=os.getcwd() + "/static/FileSome/testshell.sh"
         subprocess.Popen([
-            "sh","%s"%url,"%s"%TimeSome
+            "sh","%s"%url,"%s"%ShowStr[0]
         ])
         return JsonRes(json.dumps(TimeSome))
 
