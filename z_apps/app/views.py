@@ -60,36 +60,18 @@ class FileDetach(object):
         if YamlMsg is None:
             YamlMsg={}
             self.FDList.setdefault("%s"%DataSome.get("Node"),DataSome.get("strategy"))
-            # self.FDList.append([
-            #         DataSome.get("PintList"),
-            #         DataSome.get("Node"),
-            #         DataSome.get("strategy"),
-            # ])
             YamlMsg.setdefault("%s"%(DataSome.get("PintList")),self.FDList)
         else:
             Tf=YamlMsg.get(DataSome.get("PintList"),None)
             if Tf is None:
                 self.FDList.setdefault("%s" % DataSome.get("Node"), DataSome.get("strategy"))
-                # self.FDList.append([
-                #     DataSome.get("PintList"),
-                #     DataSome.get("Node"),
-                #     DataSome.get("strategy"),
-                # ])
 
                 YamlMsg.setdefault("%s" % (DataSome.get("PintList")), self.FDList)
-
-                # self.FiDataSome.update(YamlMsg)
             else:
                 self.FDList.setdefault("%s" % DataSome.get("Node"), DataSome.get("strategy"))
-                # self.FDList.append(DataSome.get("PintList"))
-                # self.FDList.append(DataSome.get("Node"))
-                # self.FDList.append(DataSome.get("strategy"))
-
                 dic = dict(Tf.items() + self.FDList.items())
 
                 YamlMsg["%s"%(DataSome.get("PintList"))]=dic
-
-                # self.FiDataSome.update(YamlMsg)
 
         Fn = open(FileName, 'w')
         yaml.dump(YamlMsg, default_flow_style=False,stream=Fn, indent=4, encoding='utf-8', allow_unicode=True)
@@ -355,6 +337,7 @@ class FileDeployView(TemplateView):
         Game_id=self.GameId_fun()
         self.PlatForms='{"jsonrpc":"2.0","method":"getPlatforms","params":{"main_category_id":"%s"}}' % Game_id
         PlatSome=(self.Api_show.get_data(json_str=self.PlatForms)).get('result')
+        print("Platsome",PlatSome)
         for i in range(len(PlatSome)):
             self.PlatName_list.append({
                 "name":PlatSome[i].get('name')

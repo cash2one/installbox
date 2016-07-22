@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 from django.contrib import auth
 from django.utils.functional import SimpleLazyObject
 from django.core.urlresolvers import reverse 
-from django.shortcuts import redirect  
+from django.shortcuts import redirect
 
 
 def get_user(request):
