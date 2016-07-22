@@ -78,7 +78,7 @@ function TakeSome()
         var strategy = $("#strategy").val();
 		alert(strategy);
 		$.ajax({
-			url:'/app/NodeAdd/',
+			url:'/app/NodepAdd/',
 			type:"post",
 			data:{'PintList':PintList,"Node":Node,"strategy":strategy},
 			success:function(msg){
