@@ -371,7 +371,7 @@ class FileDeployView(TemplateView):
         Game_id=self.GameId_fun()
         self.PlatForms='{"jsonrpc":"2.0","method":"getPlatforms","params":{"main_category_id":"%s"}}' % Game_id
         PlatSome=(self.Api_show.get_data(json_str=self.PlatForms)).get('result')
-        print("Platsome",PlatSome)
+
         for i in range(len(PlatSome)):
             self.PlatName_list.append({
                 "name":PlatSome[i].get('prefix')
