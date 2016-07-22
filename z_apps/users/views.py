@@ -33,7 +33,7 @@ class LoginView(RedirectView):
         callback_url = "http://%s/users/check/" % host
         co = Common()
         url = co.loginUrl(callback_url)
-        return redirect("/app/node/")
+        return redirect(url)
 
 '''
 home登出页
@@ -60,28 +60,25 @@ class ErrorView(TemplateView):
 账号密码验证
 '''
 class CheckView(RedirectView):
-    
-    permanent = False
-    query_string = True
-    
+
     def get(self, request):
-        '''get方式'''
-        token = request.GET.get("token")
-        co = Common()
-        data = co.checkToken(token)
+        # '''get方式'''
+        # token = request.GET.get("token")
+        # co = Common()
+        # data = co.checkToken(token)
+        #
+        # self.pattern_name = "users:error"
+        # if data['result']:
+        #     usersModel = Users()
+        #     user = usersModel.getUserById(data['result'])
+        #     user_role = usersModel.getRolesById(data['result'])
+        #     if user_role['result']:
+        #         response = HttpResponse()
+        #         response.set_cookie(settings.SESSION_COOKIE_NAME,user['result']['name'] )
+        #         request.session["username"] = user['result']['name']
+        #         self.pattern_name = "users:home"
 
-        self.pattern_name = "users:error"
-        if data['result']:
-            usersModel = Users()
-            user = usersModel.getUserById(data['result'])
-            user_role = usersModel.getRolesById(data['result'])
-            if user_role['result']:
-                response = HttpResponse()
-                response.set_cookie(settings.SESSION_COOKIE_NAME,user['result']['name'] )
-                request.session["username"] = user['result']['name']
-                self.pattern_name = "users:home"
-
-        return redirect(reverse(self.pattern_name, args=[]))  
+        return redirect("/app/node/")
 #         return super(CheckView, self).get(request)
     
 #     #post方式接收验证
