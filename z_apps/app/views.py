@@ -86,6 +86,7 @@ class FileDetach(object):
         '''删除节点'''
         FileSome=open(FileName,'r')
         YamlMsg=yaml.load(FileSome)
+        print("YamlMsg",YamlMsg)
         if not YamlMsg is None and not YamlMsg.get("%s"%PintList) is None:
             YamlMsg.get("%s"%PintList,"").pop("%s"%NodeName,"")
 
