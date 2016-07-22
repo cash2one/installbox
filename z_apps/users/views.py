@@ -71,7 +71,7 @@ class CheckView(RedirectView):
         self.pattern_name = "users:error"
         if data['result']:
             usersModel = Users()
-        #     user = usersModel.getUserById(data['result'])
+            user = usersModel.getUserById(data['result'])
         #     user_role = usersModel.getRolesById(data['result'])
         #     if user_role['result']:
         #         response = HttpResponse()
