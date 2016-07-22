@@ -5,7 +5,7 @@ auth:wuqichao
 createtime:2016-2-11 
 功能：用户类功能模块
 '''
-from django.conf import settings
+
 from django.http import HttpResponse
 from django.core.urlresolvers import reverse
 from django.views.generic import TemplateView, ListView, RedirectView
