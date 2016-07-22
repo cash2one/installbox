@@ -63,14 +63,14 @@ class ErrorView(TemplateView):
 class CheckView(RedirectView):
 
     def get(self, request):
-        # '''get方式'''
-        # token = request.GET.get("token")
-        # co = Common()
-        # data = co.checkToken(token)
+        '''get方式'''
+        token = request.GET.get("token")
+        co = Common()
+        data = co.checkToken(token)
         #
-        # self.pattern_name = "users:error"
-        # if data['result']:
-        #     usersModel = Users()
+        self.pattern_name = "users:error"
+        if data['result']:
+            usersModel = Users()
         #     user = usersModel.getUserById(data['result'])
         #     user_role = usersModel.getRolesById(data['result'])
         #     if user_role['result']:
