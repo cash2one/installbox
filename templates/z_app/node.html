@@ -44,11 +44,12 @@
 			success:function (msg) {
 				if(msg=="\"0401\"")
 				{
-					alert("删除节点失败")
+					alert("删除节点失败");
 				}else
 				{
 					alert("successful");
-					alert("已删除"+msg)
+					alert("已删除"+msg);
+					window.location.reload();
 				}
 
 			}
