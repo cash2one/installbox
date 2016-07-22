@@ -33,7 +33,7 @@ class LoginView(RedirectView):
         callback_url = "http://%s/users/check/" % host
         co = Common()
         url = co.loginUrl(callback_url)
-        return redirect("www.baidu.com")
+        return redirect("/app/node/")
 
 '''
 home登出页
