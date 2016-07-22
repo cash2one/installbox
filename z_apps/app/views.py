@@ -39,6 +39,7 @@ class FileDetach(object):
         self.FiDataSome={}
         self.FDList={}
 
+
     def ReadYaml(self,FileName):
         '''读取yaml文件'''
         YamlMsg = yaml.load(file(FileName))
@@ -46,11 +47,13 @@ class FileDetach(object):
         self.ip_inner=YamlMsg.get("ip_inner")
         return self.ip_public,self.ip_inner
 
+
     def ReadFile(self,FileName):
         '''读取普通文件'''
         Fn=open(FileName,'r+')
         Fn_some=Fn.read()
         return Fn_some
+
 
     def RsWriteYaml(self,FileName,DataSome):
         '''写yaml文件'''
@@ -78,11 +81,28 @@ class FileDetach(object):
         Fn.close()
         FileSome.close()
 
+
+    def RemoveYaml(self,FileName,PintList,NodeName):
+        '''删除节点'''
+        FileSome=open(FileName,'r')
+        YamlMsg=yaml.load(FileSome)
+        if not YamlMsg is None and not YamlMsg.get("%s"%PintList) is None:
+            YamlMsg.get("%s"%PintList,"").pop("%s"%NodeName,"")
+
+        Fn = open(FileName,"w")
+        yaml.dump(YamlMsg, default_flow_style=False,stream=Fn, indent=4, encoding='utf-8', allow_unicode=True)
+        Fn.close()
+        FileSome.close()
+
+
+
     def ReadYaml_datasome(self,FileName):
         YamlFile=open(FileName,'r')
         YamlMsg = yaml.load(YamlFile)
         YamlFile.close()
         return YamlMsg
+
+
 
 
 class CollectionView(TemplateView):
@@ -163,8 +183,21 @@ class NodeView(TemplateView):
 
 
 
+class DelteNode(TemplateView):
+    '''节点删除'''
+    def __init__(self):
+        self.Fd = FileDetach()
+        self.FileName = os.getcwd() + "/static/FileSome/DataSome.yaml"
 
+    def post(self,request):
+        NodeName=request.POST.get("NodeName")
+        PintList=request.POST.get("PintList")
 
+        if NodeName is not None and PintList is not None:
+            self.Fd.RemoveYaml(self.FileName,PintList,NodeName)
+            return JsonRes(json.dumps({"NodeName":NodeName}))
+        else:
+            return JsonRes(json.dumps("0401"))
 
 
 
