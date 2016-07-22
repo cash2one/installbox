@@ -439,6 +439,22 @@ class FillNodeAdd(TemplateView):
 
 
 
+class FillDelteNode(TemplateView):
+    '''失败节点删除'''
+    def __init__(self):
+        self.Fd = FileDetach()
+        self.FileName = os.getcwd() + "/static/FileSome/fileDatasome.yaml"
+
+    def post(self,request):
+        NodeName=request.POST.get("NodeName")
+        PintList=request.POST.get("PintList")
+
+        if NodeName is not None and PintList is not None:
+            self.Fd.RemoveYaml(self.FileName,PintList,NodeName)
+            return JsonRes(json.dumps({"NodeName":NodeName}))
+        else:
+            return JsonRes(json.dumps("0401"))
+
 
 
 

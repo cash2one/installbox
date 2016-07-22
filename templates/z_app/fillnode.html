@@ -15,8 +15,7 @@
 							<th width="20%">平台</th>
 							<th width="25%">节点</th>
 							<th width="10%">策略</th>
-<!--{#							<th width="30%">配置</th>#}-->
-<!--{#							<th width="10%">操作</th>#}-->
+							<th width="10%">Tools</th>
 						</tr>
 					</thead>
 					<tbody class="no-border-x">
@@ -25,8 +24,7 @@
                                 <td class="user-avatar">{{ i.PintList }}</td>
                                 <td>{{ i.Node }}</td>
                                 <td>{{ i.strategy }}</td>
-    <!--{#							<td></td>#}-->
-    <!--{#							<td>Jul 15, 2015</td>#}-->
+								<td><a href="#"><span class="badge" onclick="DelteNode('{{i.PintList}}','{{i.Node}}')">delete</span></a></td>
                             </tr>
                         {% endfor %}
 					</tbody>
@@ -36,4 +34,28 @@
 	</div>
 </div>
 
+<script>
+	function DelteNode(PintList,NodeName){
+		$.ajax({
+			url:'/app/DelteNode/',
+			data:{"PintList":PintList,"NodeName":NodeName},
+			type:'post',
+			success:function (msg) {
+				if(msg=="\"0401\"")
+				{
+					alert("删除节点失败");
+				}else
+				{
+					alert("successful");
+					alert("已删除"+msg);
+					window.location.reload();
+				}
+
+			}
+		})
+	}
+
+
+
+</script>
 {% endblock %}

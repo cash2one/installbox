@@ -37,6 +37,7 @@ urlpatterns = [
     url(r'DelteNode/$', views.DelteNode.as_view(), name="DelteNode"),
 
     url(r'FileTimeGoView/$', views.FileTimeGoView.as_view(), name="FileTimeGoView"),
-    url(r'FileTakeShell/$', views.FileTakeShell.as_view(), name="FileTakeShell")
+    url(r'FileTakeShell/$', views.FileTakeShell.as_view(), name="FileTakeShell"),
+    url(r'FillDelteNode/$', views.FillDelteNode.as_view(), name="FillDelteNode")
 
 ]
