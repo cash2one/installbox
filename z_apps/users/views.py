@@ -33,6 +33,7 @@ class LoginView(RedirectView):
         callback_url = "http://%s/users/check/" % host
         co = Common()
         url = co.loginUrl(callback_url)
+        print("url",url)
         return redirect(url.get("result,"""))
 
 '''
