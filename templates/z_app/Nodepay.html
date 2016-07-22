@@ -56,16 +56,13 @@ function TakeSome()
 			type:"post",
 			data:{'TimeSome':TimeSome},
 			success:function(msg){
-                alert(msg);
-                alert("\"0410\"");
-//                if(msg=="0401") {
-//                    alert("success");
-//                    alert(msg)
-//                }else{
-//
-//                    alert("匹配失败,字符串格式不符");
-//                    alert(msg)
-//                }
+
+                if(msg=="\"0401\"") {
+                    alert("匹配失败,字符串格式不符");
+                }else{
+                    alert("success");
+                    alert(msg)
+                }
 
 
 			}
