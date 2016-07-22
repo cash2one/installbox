@@ -5,7 +5,7 @@ auth:wuqichao
 createtime:2016-2-11 
 功能：用户类功能模块
 '''
-
+from django.conf import settings
 from django.http import HttpResponse
 from django.core.urlresolvers import reverse
 from django.views.generic import TemplateView, ListView, RedirectView
@@ -33,7 +33,7 @@ class LoginView(RedirectView):
         callback_url = "http://%s/users/check/" % host
         co = Common()
         url = co.loginUrl(callback_url)
-        return redirect(url['result'])
+        return redirect("www.baidu.com")
 
 '''
 home登出页
@@ -66,20 +66,20 @@ class CheckView(RedirectView):
     
     def get(self, request):
         '''get方式'''
-        # token = request.GET.get("token")
-        # co = Common()
-        # data = co.checkToken(token)
-        #
-        # self.pattern_name = "users:error"
-        # if data['result']:
-        #     usersModel = Users()
-        #     user = usersModel.getUserById(data['result'])
-        #     user_role = usersModel.getRolesById(data['result'])
-        #     if user_role['result']:
-        #         response = HttpResponse()
-        #         # response.set_cookie(settings.SESSION_COOKIE_NAME,user['result']['name'] )
-        #         request.session["username"] = user['result']['name']
-        #         self.pattern_name = "users:home"
+        token = request.GET.get("token")
+        co = Common()
+        data = co.checkToken(token)
+
+        self.pattern_name = "users:error"
+        if data['result']:
+            usersModel = Users()
+            user = usersModel.getUserById(data['result'])
+            user_role = usersModel.getRolesById(data['result'])
+            if user_role['result']:
+                response = HttpResponse()
+                response.set_cookie(settings.SESSION_COOKIE_NAME,user['result']['name'] )
+                request.session["username"] = user['result']['name']
+                self.pattern_name = "users:home"
 
         return redirect(reverse(self.pattern_name, args=[]))  
 #         return super(CheckView, self).get(request)
