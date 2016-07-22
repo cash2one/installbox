@@ -25,7 +25,7 @@
                                 <td class="user-avatar">{{ i.PintList }}</td>
                                 <td>{{ i.Node }}</td>
                                 <td>{{ i.strategy }}</td>
-								<td><span class="badge" onclick="DelteNode('{{i.PintList}}','{{i.Node}}')">delete</span></td>
+								<td><a>span class="badge" onclick="DelteNode('{{i.PintList}}','{{i.Node}}')">delete</span></a></td>
                             </tr>
                         {% endfor %}
 					</tbody>
@@ -38,7 +38,7 @@
 <script>
 	function DelteNode(PintList,NodeName){
 		$.ajax({
-			url:'/app/DeleteNode/',
+			url:'/app/DelteNode/',
 			data:{"PintList":PintList,"NodeName":NodeName},
 			type:'post',
 			success:function (msg) {
