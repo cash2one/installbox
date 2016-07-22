@@ -62,21 +62,21 @@ class ErrorView(TemplateView):
 class CheckView(RedirectView):
 
     def get(self, request):
-        # '''get方式'''
-        # token = request.GET.get("token")
-        # co = Common()
-        # data = co.checkToken(token)
-        #
-        # self.pattern_name = "users:error"
-        # if data['result']:
-        #     usersModel = Users()
-        #     user = usersModel.getUserById(data['result'])
-        #     user_role = usersModel.getRolesById(data['result'])
-        #     if user_role['result']:
-        #         response = HttpResponse()
-        #         response.set_cookie(settings.SESSION_COOKIE_NAME,user['result']['name'] )
-        #         request.session["username"] = user['result']['name']
-        self.pattern_name = "users:home"
+        '''get方式'''
+        token = request.GET.get("token")
+        co = Common()
+        data = co.checkToken(token)
+
+        self.pattern_name = "users:error"
+        if data['result']:
+            usersModel = Users()
+            user = usersModel.getUserById(data['result'])
+            user_role = usersModel.getRolesById(data['result'])
+            if user_role['result']:
+                response = HttpResponse()
+                response.set_cookie(settings.SESSION_COOKIE_NAME,user['result']['name'] )
+                request.session["username"] = user['result']['name']
+                self.pattern_name = "users:home"
 
         return redirect(reverse(self.pattern_name, args=[]))
 #         return super(CheckView, self).get(request)
