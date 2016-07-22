@@ -451,6 +451,7 @@ class FillDelteNode(TemplateView):
         PintList=request.POST.get("PintList")
 
         if NodeName is not None and PintList is not None:
+            print("selfFileName",self.FileName)
             self.Fd.RemoveYaml(self.FileName,PintList,NodeName)
             return JsonRes(json.dumps({"NodeName":NodeName}))
         else:
