@@ -15,8 +15,8 @@ from django.views.generic import TemplateView, FormView
 import subprocess
 from z_apps.base.views import JSONResponseMixin
 from z_apps.zapp_tools.views import Api
-
-
+from clients.config import Url_some
+Url=Url_some()
 
 class JsonRes(HttpResponse):
     def __init__(self,
@@ -29,16 +29,7 @@ class JsonRes(HttpResponse):
             status=status,
             content_type=content_type)
 
-class Url_some(object):
-    def __init__(self):
-        self.root=os.getcwd()
-        self.DataSome=self.root+"/static/FileSome/DataSome.yaml"
-        self.fileDatasome=self.root+"/static/FileSome/fileDatasome.yaml"
-        self.game_category=self.root+"/static/FileSome/game_category.txt"
-        self.korea=self.root+"/static/FileSome/korea.yaml"
-        self.platform_category=self.root+"/static/FileSome/platform_category.txt"
-        self.testshell=self.root+"/static/FileSome/testshell.sh"
-Url=Url_some()
+
 
 class FileDetach(object):
     '''文件操作'''
